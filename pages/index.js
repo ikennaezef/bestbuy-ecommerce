@@ -1,18 +1,21 @@
 import {client} from '../lib/client';
-import {Box, Container, Heading, Text} from '@chakra-ui/react';
+import {Box, Grid, Container, Heading, Text} from '@chakra-ui/react';
 import {NavBar, Banner, ProductCard, Footer} from '../components';
 
-export default function Home() {
+export default function Home({products, bannerData}) {
+
   return (
     <div>
       <NavBar/>
-      <Banner/>
+      <Banner data={bannerData[0]}/>
       <Container maxWidth='container.xl'>
         <Box mt={8}>
           <Heading textAlign='center'>New Arrivals</Heading>
           <Text textAlign='center' fontSize='0.8rem'>Check out what we have in store for you</Text>
-          <Box pt={6}>
-            {['product1', 'product2'].map(p => <ProductCard/>)}
+          <Box pt={6} >
+            <Grid templateColumns={{base: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)'}} gap='1rem' py={4}>
+              {products.map((product, i) => <ProductCard key={product._id} product={product}/>)}
+            </Grid>
           </Box>
         </Box>
       </Container>      
@@ -21,10 +24,13 @@ export default function Home() {
 }
 
 export const getServerSideProps = async () => {
-  const query = '*[_type == "product"]';
+  const query = '*[_type == "product"]{_id, slug, productName, price, image}';
   const products = await client.fetch(query);
 
+  const bannerQuery = '*[_type == "banner"]';
+  const bannerData = await client.fetch(bannerQuery);
+
   return {
-    props: {products}
+    props: {products, bannerData}
   }
 }
