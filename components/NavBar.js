@@ -1,7 +1,8 @@
 import React from 'react'
 import NextLink from 'next/link';
-import {Box, Container, Text, Link, Flex, Hide, Show, UnorderedList, ListItem} from '@chakra-ui/react';
-import {FaBars} from 'react-icons/fa'
+import { Box, Container, Text, Link, Button, Flex, Hide, Show, UnorderedList, ListItem } from '@chakra-ui/react';
+import { FaBars } from 'react-icons/fa';
+import { AiOutlineShopping } from 'react-icons/ai';
 
 const NavBar = () => {
   return (
@@ -11,7 +12,7 @@ const NavBar = () => {
           <Box>
             <Flex fontWeight='700' fontSize='2rem'><Text>BEST</Text><Text display='inline' color='blue.500'>BUY</Text></Flex>
           </Box>
-          <Box>
+          <Flex align='center' gap='1rem'>
             <Show above='md'>
               <UnorderedList listStyleType='none' display='flex' gap='1rem'>
                 <ListItem>
@@ -31,10 +32,14 @@ const NavBar = () => {
                 </ListItem>
               </UnorderedList>
             </Show>
+            <Button variant='ghost' p={2} position='relative'>
+              <AiOutlineShopping fontSize='1.8rem' />
+              <Text rounded='full' textAlign='center' boxSize='1.2rem' position='absolute' top='5px' right='2px' p={1} fontSize='0.8rem' color='white' bg='red.400' >1</Text>
+            </Button>
             <Hide above='md'>
-              <FaBars fontSize='1.2rem'/>
+              <FaBars fontSize='1.2rem' />
             </Hide>
-          </Box>
+          </Flex>
         </Flex>
       </Container>
     </nav>
