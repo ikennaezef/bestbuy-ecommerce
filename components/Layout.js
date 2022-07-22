@@ -1,22 +1,22 @@
+import React from 'react';
+
 import Head from 'next/head';
-import {NavBar} from './NavBar';
-import {Footer} from './Footer';
+import NavBar from './NavBar';
+import Footer from './Footer';
 
-import React from 'react'
-
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
     <div>
       <Head>
         <title>BestBuy Web Store</title>
       </Head>
       <header>
-        <NavBar/>
+        <NavBar />
       </header>
       <main>
-        SAMPOLE
+        {children}
       </main>
-      <Footer/>
+      <Footer />
     </div>
   )
 }
