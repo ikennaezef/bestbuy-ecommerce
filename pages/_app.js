@@ -3,6 +3,8 @@ import '../styles/globals.css'
 
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import { Layout } from '../components';
+import { ContextWrapper } from '../context/AppContext';
+import { Toaster } from 'react-hot-toast';
 
 const colors = {
   brand: {
@@ -17,9 +19,12 @@ const theme = extendTheme({ colors })
 function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider theme={theme}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <ContextWrapper>
+        <Layout>
+          <Toaster />
+          <Component {...pageProps} />
+        </Layout>
+      </ContextWrapper>
     </ChakraProvider>
   )
 }

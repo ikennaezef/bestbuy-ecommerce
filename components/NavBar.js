@@ -10,7 +10,10 @@ const NavBar = () => {
       <Container maxWidth='container.xl' py={4}>
         <Flex align='center' justify='space-between'>
           <Box>
-            <Flex fontWeight='700' fontSize='2rem'><Text>BEST</Text><Text display='inline' color='blue.500'>BUY</Text></Flex>
+            <NextLink href='/'>
+              <Link _hover={{ textDecoration: 'none' }}>
+                <Flex fontWeight='700' fontSize='2rem'><Text>BEST</Text><Text display='inline' color='blue.500'>BUY</Text></Flex></Link>
+            </NextLink>
           </Box>
           <Flex align='center' gap='1rem'>
             <Show above='md'>
@@ -34,7 +37,7 @@ const NavBar = () => {
             </Show>
             <Button variant='ghost' p={2} position='relative'>
               <AiOutlineShopping fontSize='1.8rem' />
-              <Text rounded='full' textAlign='center' boxSize='1.2rem' position='absolute' top='5px' right='2px' p={1} fontSize='0.8rem' color='white' bg='red.400' >1</Text>
+              <Flex align='center' rounded='full' justify='center' boxSize='1.2rem' position='absolute' top='5px' right='2px' p={1} fontSize='0.8rem' color='white' bg='red.500' >1</Flex>
             </Button>
             <Hide above='md'>
               <FaBars fontSize='1.2rem' />

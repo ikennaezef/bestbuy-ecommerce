@@ -11,8 +11,8 @@ export default {
     {
       name: 'image',
       title: 'Image',
-      type: 'array', 
-      of: [{type: 'image'}],
+      type: 'array',
+      of: [{ type: 'image' }],
       options: {
         hotspot: true
       }
@@ -35,6 +35,15 @@ export default {
       name: 'details',
       title: 'Details',
       type: 'string'
+    },
+    {
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      options: {
+        list: ['earphones', 'earpods', 'speaker', 'headphone', 'watch', 'gaming']
+      },
+      validation: Rule => Rule.required().error('A category is required')
     }
   ]
 }

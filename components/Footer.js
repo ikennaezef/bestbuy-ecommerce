@@ -8,8 +8,8 @@ const Footer = () => {
   return (
     <footer>
       <Box bg='blue.900' color='white'>
-        <Container maxW='container.xl' py={8}>
-          <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} alignItems='start'>
+        <Container maxW='container.xl' py={10}>
+          <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap='2rem' alignItems='start'>
             <Box>
               <UnorderedList listStyleType='none'>
                 <ListItem fontSize='1.1rem' fontWeight='600' mb={2}>Links</ListItem>
@@ -50,7 +50,7 @@ const Footer = () => {
                 </ListItem>
               </UnorderedList>
             </Box>
-            <Flex align='center' gap='1rem'>
+            <Flex align='center' gap='1rem' pl={{ base: 3, md: 0 }}>
               <Link color='white' _hover={{ color: 'blue.400' }}>
                 <AiFillFacebook fontSize='1.5rem' />
               </Link>
