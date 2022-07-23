@@ -22,7 +22,7 @@ const ProductDetails = ({ product, others }) => {
             </Box>
             <Flex gap='1rem' pt={2}>
               {product.image.map((img, i) =>
-                <Box p={2} border='1px' w='4rem' borderColor='#DDDDDD' bgColor={index == i ? 'blue.200' : 'white'} cursor='pointer' onClick={() => setIndex(i)} _hover={{ bgColor: 'blue.50' }}>
+                <Box key={i} p={2} border='1px' w='4rem' borderColor='#DDDDDD' bgColor={index == i ? 'blue.200' : 'white'} cursor='pointer' onClick={() => setIndex(i)} _hover={{ bgColor: 'blue.50' }}>
                   <Image key={i} width='3.6rem' src={urlFor(img).url()} />
                 </Box>)}
             </Flex>

@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import NextLink from 'next/link';
 import { urlFor } from '../lib/client';
+import getStripe from '../lib/getStripe';
 
 import { Box, Flex, Button, Link, Text, Heading, Image, CloseButton } from '@chakra-ui/react';
 import { AiOutlineShopping, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
@@ -14,6 +15,25 @@ const Cart = () => {
 
   const cartRef = useRef();
   const { cartItems, totalPrice, totalQuantities, setShowCart, toggleCartItemQuantity, onRemove } = useAppContext();
+
+  const handleCheckout = async () => {
+    const stripe = await getStripe();
+
+    const response = await fetch('/api/stripe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(cartItems),
+    });
+
+    if (response.statusCode === 500) return;
+
+    const data = await response.json();
+    toast.loading('Redirecting...');
+
+    stripe.redirectToCheckout({ sessionId: data.id })
+  }
 
   return (
     <Box ref={cartRef} bg='rgba(0, 0, 0, 0.5)' w='100vw' position='fixed' top='0' right='0' zIndex={5}>
@@ -71,7 +91,7 @@ const Cart = () => {
               <Text>${totalPrice.toFixed(2)}</Text>
             </Flex>
             <Box>
-              <Button size='lg' color='white' bg='blue.600' _hover={{ bgColor: 'blue.500' }} w='full'>Pay with Stripe</Button>
+              <Button size='lg' color='white' bg='blue.600' _hover={{ bgColor: 'blue.500' }} w='full' onClick={handleCheckout}>Pay with Stripe</Button>
             </Box>
           </Box>
         )}
