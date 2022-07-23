@@ -44,13 +44,41 @@ export const ContextWrapper = ({ children }) => {
       setCartItems(updatedCartItems);
 
     } else {
+      product.quantity = quantity;
       setCartItems([...cartItems, { ...product }]);
     }
 
-    toast.success(`${qty} ${product.name} added to the cart.`);
+    toast.success(`${qty} ${product.productName} added to the cart.`);
   }
 
-  const values = { cartItems, setCartItems, showCart, setShowCart, totalPrice, setTotalPrice, totalQuantities, setTotalQuantities, qty, incQty, decQty, onAdd };
+  const onRemove = (product) => {
+    setCartItems(cartItems.filter(item => item._id !== product._id));
+    setTotalQuantities(prevTotalQuantities => prevTotalQuantities - product.quantity);
+    setTotalPrice(prevTotalPrice => prevTotalPrice - product.price * product.quantity);
+  }
+
+  const toggleCartItemQuantity = (id, value) => {
+    const foundProduct = cartItems.find(item => item._id === id);
+    const foundProductIndex = cartItems.findIndex(item => item._id === id);
+
+    if (value === 'inc') {
+      let newCartItems = cartItems.map(product => product._id === id ? { ...foundProduct, quantity: foundProduct.quantity + 1 } : product);
+      setCartItems(newCartItems);
+
+      setTotalPrice(prevTotalPrice => prevTotalPrice + foundProduct.price);
+      setTotalQuantities(prevTotalQuantities => prevTotalQuantities + 1);
+    } else if (value = 'dec') {
+      if (foundProduct.quantity > 1) {
+        let newCartItems = cartItems.map(product => product._id === id ? { ...foundProduct, quantity: foundProduct.quantity - 1 } : product);
+        setCartItems(newCartItems);
+
+        setTotalPrice(prevTotalPrice => prevTotalPrice - foundProduct.price);
+        setTotalQuantities(prevTotalQuantities => prevTotalQuantities - 1);
+      }
+    }
+  }
+
+  const values = { cartItems, showCart, setShowCart, totalPrice, totalQuantities, setTotalQuantities, qty, incQty, decQty, onAdd, onRemove, toggleCartItemQuantity };
 
   return (
     <AppContext.Provider value={values}>
