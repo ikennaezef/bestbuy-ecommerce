@@ -10,7 +10,12 @@ import { useAppContext } from '../../context/AppContext';
 const ProductDetails = ({ product, others }) => {
 
   const [index, setIndex] = useState(0);
-  const { incQty, decQty, qty, onAdd } = useAppContext();
+  const { incQty, decQty, qty, onAdd, setShowCart } = useAppContext();
+
+  const handleBuyNow = () => {
+    onAdd(product, qty);
+    setShowCart(true);
+  }
 
   return (
     <Box py={10} minH='65vh'>
@@ -53,7 +58,7 @@ const ProductDetails = ({ product, others }) => {
             </Flex>
             <Flex gap='1rem'>
               <Button color='blue.600' size='lg' rounded='none' bg='white' border='1px' borderColor='blue.600' _hover={{ bgColor: 'blue.50' }} onClick={() => onAdd(product, qty)}>Add to Cart</Button>
-              <Button bgColor='blue.600' size='lg' rounded='none' color='white' _hover={{ bgColor: 'blue.500' }}>Buy Now</Button>
+              <Button bgColor='blue.600' size='lg' rounded='none' color='white' _hover={{ bgColor: 'blue.500' }} onClick={handleBuyNow}>Buy Now</Button>
             </Flex>
           </Box>
         </Flex>
