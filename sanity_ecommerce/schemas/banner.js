@@ -6,10 +6,12 @@ export default {
         {
             name: 'image',
             title: 'Image',
-            type: 'image',
+            type: 'array',
+            of: [{ type: 'image' }],
             options: {
                 hotspot: true,
             },
+            validation: Rule => Rule.max(1),
         },
         {
             name: 'buttonText',
@@ -17,8 +19,8 @@ export default {
             type: 'string',
         },
         {
-            name: 'product',
-            title: 'Product',
+            name: 'productName',
+            title: 'Product Name',
             type: 'string',
         },
         {
@@ -27,8 +29,17 @@ export default {
             type: 'string',
         },
         {
+            name: 'slug',
+            title: 'Slug',
+            type: 'slug',
+            options: {
+                source: 'productName',
+                maxLength: 90
+            }
+        },
+        {
             name: 'smallText',
-            title: 'SmallText',
+            title: 'Small Text',
             type: 'string',
         },
         {
@@ -38,12 +49,12 @@ export default {
         },
         {
             name: 'largeText1',
-            title: 'LargeText1',
+            title: 'Large Text 1',
             type: 'string',
         },
         {
             name: 'largeText2',
-            title: 'LargeText2',
+            title: 'Large Text 2',
             type: 'string',
         },
         {
@@ -53,8 +64,22 @@ export default {
         },
         {
             name: 'saleTime',
-            title: 'SaleTime',
+            title: 'Sale Time',
             type: 'string',
         },
+        {
+            name: 'price',
+            title: 'Price',
+            type: 'number'
+        },
+        {
+            name: 'category',
+            title: 'Category',
+            type: 'string',
+            options: {
+                list: ['earphones', 'earpods', 'speaker', 'headphone', 'watch', 'gaming']
+            },
+            validation: Rule => Rule.required().error('A category is required')
+        }
     ],
 };

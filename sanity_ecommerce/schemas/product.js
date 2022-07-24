@@ -1,6 +1,6 @@
 export default {
   name: 'product',
-  title: 'product',
+  title: 'Product',
   type: 'document',
   fields: [
     {
@@ -41,7 +41,7 @@ export default {
       title: 'Category',
       type: 'string',
       options: {
-        list: ['earphones', 'earpods', 'speaker', 'headphone', 'watch', 'gaming']
+        list: ['earphones', 'earpods', 'speaker', 'headphone', 'watch', 'gaming', 'appliance']
       },
       validation: Rule => Rule.required().error('A category is required')
     }

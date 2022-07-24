@@ -19,12 +19,12 @@ const Footer = () => {
                   </NextLink>
                 </ListItem>
                 <ListItem>
-                  <NextLink href='/'>
+                  <NextLink href='/blog'>
                     <Link _hover={{ color: 'blue.400' }}>Blog</Link>
                   </NextLink>
                 </ListItem>
                 <ListItem>
-                  <NextLink href='/'>
+                  <NextLink href='/about'>
                     <Link _hover={{ color: 'blue.400' }}>About</Link>
                   </NextLink>
                 </ListItem>

@@ -33,12 +33,12 @@ const NavBar = () => {
                   </NextLink>
                 </ListItem>
                 <ListItem>
-                  <NextLink href='/'>
+                  <NextLink href='/blog'>
                     <Link>Blog</Link>
                   </NextLink>
                 </ListItem>
                 <ListItem>
-                  <NextLink href='/'>
+                  <NextLink href='/about'>
                     <Link>About</Link>
                   </NextLink>
                 </ListItem>
@@ -68,13 +68,13 @@ const NavBar = () => {
                   </ListItem>
                   <Divider my={4} bg='#CCCCCC' />
                   <ListItem fontSize='1.3rem'>
-                    <NextLink href='/'>
+                    <NextLink href='/blog'>
                       <Link display='flex' justifyContent='space-between' onClick={() => setShowNav(false)}>Blog <BiChevronRight fontSize='1.6rem' color='#888888' /></Link>
                     </NextLink>
                   </ListItem>
                   <Divider my={4} bg='#CCCCCC' />
                   <ListItem fontSize='1.3rem'>
-                    <NextLink href='/'>
+                    <NextLink href='/about'>
                       <Link display='flex' justifyContent='space-between' onClick={() => setShowNav(false)}>About <BiChevronRight fontSize='1.6rem' color='#888888' /></Link>
                     </NextLink>
                   </ListItem>
