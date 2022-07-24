@@ -60,7 +60,7 @@ const Cart = () => {
           {cartItems.length > 0 && cartItems.map((item, index) => (
             <Flex key={index} align='center' gap='1rem' mb={2}>
               <Box w='20%'>
-                <Image src={urlFor(item?.image[0]).url()} />
+                <Image src={urlFor(item?.image[0]).url()} alt='product image' />
               </Box>
               <Box w='70%'>
                 <Heading as='h4' fontSize='1.2rem' mb={1}>{item.productName}</Heading>

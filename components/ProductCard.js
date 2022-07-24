@@ -9,7 +9,7 @@ const ProductCard = ({ product }) => {
     <NextLink href={`/product/${product.slug.current}`}>
       <Link cursor='pointer' _hover={{ transform: 'scale(1.02)' }}>
         <Box border='1px' borderColor='#e4e4e4' p={2} h='100%' >
-          <Image src={urlFor(product.image[0]).url()} w='full' />
+          <Image src={urlFor(product.image[0]).url()} w='full' alt='product image' />
           <Divider pt={2} />
           <Text fontSize='1.2rem' fontWeight='600' mb={1}>{product.productName}</Text>
           <Text color='blue.500' fontWeight='500'>${product.price.toFixed(2)}</Text>
