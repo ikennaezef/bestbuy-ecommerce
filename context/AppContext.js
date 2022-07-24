@@ -49,6 +49,7 @@ export const ContextWrapper = ({ children }) => {
     }
 
     toast.success(`${qty} ${product.productName} added to the cart.`);
+    setQty(1);
   }
 
   const onRemove = (product) => {
@@ -59,7 +60,6 @@ export const ContextWrapper = ({ children }) => {
 
   const toggleCartItemQuantity = (id, value) => {
     const foundProduct = cartItems.find(item => item._id === id);
-    const foundProductIndex = cartItems.findIndex(item => item._id === id);
 
     if (value === 'inc') {
       let newCartItems = cartItems.map(product => product._id === id ? { ...foundProduct, quantity: foundProduct.quantity + 1 } : product);
@@ -78,7 +78,7 @@ export const ContextWrapper = ({ children }) => {
     }
   }
 
-  const values = { cartItems, showCart, setShowCart, totalPrice, totalQuantities, setTotalQuantities, qty, incQty, decQty, onAdd, onRemove, toggleCartItemQuantity };
+  const values = { cartItems, setCartItems, showCart, setShowCart, totalPrice, setTotalPrice, totalQuantities, setTotalQuantities, qty, incQty, decQty, onAdd, onRemove, toggleCartItemQuantity };
 
   return (
     <AppContext.Provider value={values}>
