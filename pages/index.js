@@ -10,7 +10,7 @@ export default function Home({ arrivalsData, soundData, gamingData, applianceDat
       <Container maxWidth='container.xl'>
         <Box mt={8}>
           <Heading textAlign='center'>New Arrivals</Heading>
-          <Text textAlign='center' fontSize='0.8rem'>Check out what we have in store for you</Text>
+          <Text textAlign='center' color='gray.500' fontSize='0.9rem'>Check out what we have in store for you</Text>
           <Box py={6} >
             <Grid templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }} gap='1rem' py={4}>
               {arrivalsData.map((product, i) => <ProductCard key={product._id} product={product} />)}
@@ -19,7 +19,7 @@ export default function Home({ arrivalsData, soundData, gamingData, applianceDat
         </Box>
         <Box mt={8}>
           <Heading textAlign='center'>Hear the Sound</Heading>
-          <Text textAlign='center' fontSize='0.8rem'>Check out the latest sound players</Text>
+          <Text textAlign='center' color='gray.500' fontSize='0.9rem'>Check out the latest sound players</Text>
           <Box py={6} >
             <Grid templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }} gap='1rem' py={4}>
               {soundData.map((product, i) => <ProductCard key={product._id} product={product} />)}
@@ -28,7 +28,7 @@ export default function Home({ arrivalsData, soundData, gamingData, applianceDat
         </Box>
         <Box mt={8}>
           <Heading textAlign='center'>Game the Gamer</Heading>
-          <Text textAlign='center' fontSize='0.8rem'>Enter the world of games with our gaming products</Text>
+          <Text textAlign='center' color='gray.500' fontSize='0.9rem'>Enter the world of games with our gaming products</Text>
           <Box py={6} >
             <Grid templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }} gap='1rem' py={4}>
               {gamingData.map((product, i) => <ProductCard key={product._id} product={product} />)}
@@ -37,7 +37,7 @@ export default function Home({ arrivalsData, soundData, gamingData, applianceDat
         </Box>
         <Box mt={8}>
           <Heading textAlign='center'>Home Keepers</Heading>
-          <Text textAlign='center' fontSize='0.8rem'>Check out our latest home appliances</Text>
+          <Text textAlign='center' color='gray.500' fontSize='0.9rem'>Check out our latest home appliances</Text>
           <Box py={6} >
             <Grid templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }} gap='1rem' py={4}>
               {applianceData.map((product, i) => <ProductCard key={product._id} product={product} />)}
@@ -50,16 +50,16 @@ export default function Home({ arrivalsData, soundData, gamingData, applianceDat
 }
 
 export const getServerSideProps = async () => {
-  const arrivalsQuery = '*[_type == "product"][0..4]{_id, slug, productName, price, image}';
+  const arrivalsQuery = '*[_type == "product"][0..4]{_id, slug, productName, oldPrice, price, image}';
   const arrivalsData = await client.fetch(arrivalsQuery);
 
-  const soundQuery = '*[_type == "product" && category in ["headphone", "earphones", "speaker", "earpods" ]]{_id, slug, productName, price, image}';
+  const soundQuery = '*[_type == "product" && category in ["headphone", "earphones", "speaker", "earpods" ]]{_id, slug, productName, oldPrice, price, image}';
   const soundData = await client.fetch(soundQuery);
 
-  const gamingQuery = '*[_type == "product" && category == "gaming" ]{_id, slug, productName, price, image}';
+  const gamingQuery = '*[_type == "product" && category == "gaming" ]{_id, slug, productName, oldPrice, price, image}';
   const gamingData = await client.fetch(gamingQuery);
 
-  const applianceQuery = '*[_type == "product" && category == "appliance" ]{_id, slug, productName, price, image}';
+  const applianceQuery = '*[_type == "product" && category == "appliance" ]{_id, slug, productName, oldPrice, price, image}';
   const applianceData = await client.fetch(applianceQuery);
 
   const bannerQuery = '*[_type == "banner"]';

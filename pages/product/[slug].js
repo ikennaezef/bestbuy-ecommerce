@@ -23,7 +23,7 @@ const ProductDetails = ({ product, others }) => {
         <Flex direction={{ base: 'column', md: 'row' }} px={{ base: 0, md: 2 }} align={{ base: 'start', md: 'center' }} gap='1rem' mb={10}>
           <Box w={{ base: 'full', md: '50%' }}>
             <Box mb={2}>
-              <Image src={urlFor(product.image[index]).url()} alt='product image' />
+              <Image w={{ base: '80%', md: 'full' }} src={urlFor(product.image[index]).url()} alt='product image' />
             </Box>
             <Flex gap='1rem' pt={2}>
               {product.image.map((img, i) =>
@@ -34,7 +34,7 @@ const ProductDetails = ({ product, others }) => {
           </Box>
 
           <Box>
-            <Heading mb={2} fontSize='2rem'>{product.productName}</Heading>
+            <Heading mb={2} fontSize={{ base: '1.7rem', md: '2rem' }}>{product.productName}</Heading>
             <Flex align='center' mb={8}>
               <AiFillStar color='#ECC94B' fontSize='1.1rem' />
               <AiFillStar color='#ECC94B' fontSize='1.1rem' />
@@ -45,6 +45,7 @@ const ProductDetails = ({ product, others }) => {
             </Flex>
             <Heading as='h4' mb={2} fontSize='1.4rem'>Details</Heading>
             <Text mb={2}>{product.details}</Text>
+            {product.oldPrice && <Text color='gray.400' fontSize='1.1rem' textDecoration='line-through'>${product.oldPrice.toFixed(2)}</Text>}
             <Text color='blue.500' fontWeight='600' fontSize='1.4rem' mb={4}>${product.price.toFixed(2)}</Text>
             <Heading as='h4' mb={2} fontSize='1.3rem'>Quantity</Heading>
             <Flex align='center' mb={4}>
@@ -63,7 +64,7 @@ const ProductDetails = ({ product, others }) => {
           </Box>
         </Flex>
         <Box>
-          <Heading textAlign='center' fontSize='2rem' mb={6}>You may also like</Heading>
+          <Heading textAlign='center' fontSize={{ base: '1.7rem', md: '2rem' }} mb={6}>You may also like</Heading>
           <Grid templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(5, 1fr)' }} gap='1rem'>
             {others.map(product => <ProductCard key={product._id} product={product} />)}
           </Grid>
@@ -79,7 +80,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
   const query = `*[_type in ["banner", "product"] && slug.current== '${slug}'][0]`;
   const product = await client.fetch(query);
 
-  const othersQuery = `*[_type == "product" && slug.current != '${slug}' ][0..3]{_id, slug, productName, price, image}`;
+  const othersQuery = `*[_type == "product" && slug.current != '${slug}' ][0..3]{_id, slug, productName, oldPrice, price, image}`;
   const others = await client.fetch(othersQuery);
 
   return {

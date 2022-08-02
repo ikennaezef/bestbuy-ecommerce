@@ -42,14 +42,14 @@ const Cart = () => {
           <CloseButton onClick={() => setShowCart(false)} />
         </Flex>
         <Flex gap='10px' mb={6}>
-          <Text fontSize='1.4rem' fontWeight='600'>Your Cart</Text>
-          <Text fontSize='1.4rem' color='red.500'> ({totalQuantities} items)</Text>
+          <Text fontSize={{ base: '1.2rem', md: '1.4rem' }} fontWeight='600'>Your Cart</Text>
+          <Text fontSize={{ base: '1.2rem', md: '1.4rem' }} color='red.500'> ({totalQuantities} items)</Text>
         </Flex>
 
         {cartItems.length < 1 && (
-          <Flex direction='column' align='center'>
+          <Flex direction='column' align='center' py={8}>
             <AiOutlineShopping size={150} color='#BBBBBB' />
-            <Text fontSize='1.2rem' mb={6}>Your shopping bag is empty</Text>
+            <Text fontSize='1.1rem' mb={6}>Your shopping bag is empty</Text>
             <NextLink href='/'>
               <Button bg='blue.600' color='white' size='lg' rounded='none' _hover={{ bg: 'blue.400' }} onClick={() => setShowCart(false)}>Continue Shopping</Button>
             </NextLink>
@@ -63,9 +63,9 @@ const Cart = () => {
                 <Image src={urlFor(item?.image[0]).url()} alt='product image' />
               </Box>
               <Box w='70%'>
-                <Heading as='h4' fontSize='1.2rem' mb={1}>{item.productName}</Heading>
+                <Heading as='h4' fontSize={{ base: '1rem', md: '1.2rem' }} mb={1}>{item.productName}</Heading>
                 <Flex align='center' justify='space-between'>
-                  <Text fontSize='1.2rem' fontWeight='600' color='blue.600' mb={2}>${item.price.toFixed(2)}</Text>
+                  <Text fontSize='1.1rem' fontWeight='600' color='blue.600' mb={2}>${item.price.toFixed(2)}</Text>
                   <Button bg='red.500' boxSize='2rem' p={1} _hover={{ bg: 'red.400' }} onClick={() => onRemove(item)}>
                     <RiCloseLine fontSize='1.5rem' color='white' />
                   </Button>
@@ -86,7 +86,7 @@ const Cart = () => {
 
         {cartItems.length > 0 && (
           <Box position='absolute' bottom='0.5rem' right='0.5rem' w='full' py={4} px={10}>
-            <Flex gap='0.5rem' fontSize='1.3rem' justify='space-between' mb={4}>
+            <Flex gap='0.5rem' fontSize={{ base: '1.2rem', md: '1.3rem' }} justify='space-between' mb={4}>
               <Text fontWeight='600'>Subtotal: </Text>
               <Text>${totalPrice.toFixed(2)}</Text>
             </Flex>

@@ -21,7 +21,7 @@ const NavBar = () => {
           <Box>
             <NextLink href='/'>
               <Link _hover={{ textDecoration: 'none' }}>
-                <Flex fontWeight='700' fontSize='2rem'><Text>BEST</Text><Text display='inline' color='blue.500'>BUY</Text></Flex></Link>
+                <Flex fontWeight='700' fontSize={{ base: '1.7rem', md: '2rem' }}><Text>BEST</Text><Text display='inline' color='blue.500'>BUY</Text></Flex></Link>
             </NextLink>
           </Box>
           <Flex align='center' gap='1rem'>
